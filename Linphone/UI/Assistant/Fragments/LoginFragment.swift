@@ -86,138 +86,9 @@ struct LoginFragment: View {
 							.padding(.bottom, 10)
 							
 							VStack(alignment: .leading) {
-								Text(String(localized: "username")+"*")
-									.default_text_style_700(styleSize: 15)
-									.padding(.bottom, -5)
-								
-								TextField("username", text: $accountLoginViewModel.username)
-									.default_text_style(styleSize: 15)
-									.disableAutocorrection(true)
-									.autocapitalization(.none)
-									.disabled(coreContext.loggedIn)
-									.frame(height: 25)
-									.padding(.horizontal, 20)
-									.padding(.vertical, 15)
-									.cornerRadius(60)
-									.overlay(
-										RoundedRectangle(cornerRadius: 60)
-											.inset(by: 0.5)
-											.stroke(isNameFocused ? Color.orangeMain500 : Color.gray200, lineWidth: 1)
-									)
-									.padding(.bottom)
-									.focused($isNameFocused)
-								
-								Text(String(localized: "password")+"*")
-									.default_text_style_700(styleSize: 15)
-									.padding(.bottom, -5)
-								
-								ZStack(alignment: .trailing) {
-									Group {
-										if isSecured {
-											SecureField("password", text: $accountLoginViewModel.passwd)
-												.default_text_style(styleSize: 15)
-												.frame(height: 25)
-												.focused($isPasswordFocused)
-										} else {
-											TextField("password", text: $accountLoginViewModel.passwd)
-												.default_text_style(styleSize: 15)
-												.disableAutocorrection(true)
-									   			.autocapitalization(.none)
-												.frame(height: 25)
-												.focused($isPasswordFocused)
-										}
-									}
-									
-									Button(action: {
-										isSecured.toggle()
-									}, label: {
-										Image(self.isSecured ? "eye-slash" : "eye")
-											.renderingMode(.template)
-											.resizable()
-											.foregroundStyle(Color.grayMain2c500)
-											.frame(width: 20, height: 20)
-									})
-								}
-								.disabled(coreContext.loggedIn)
-								.padding(.horizontal, 20)
-								.padding(.vertical, 15)
-								.cornerRadius(60)
-								.overlay(
-									RoundedRectangle(cornerRadius: 60)
-										.inset(by: 0.5)
-										.stroke(isPasswordFocused ? Color.orangeMain500 : Color.gray200, lineWidth: 1)
-								)
-								.padding(.bottom)
-								
-								Button(action: {
-									sharedMainViewModel.changeDisplayProfileMode()
-									self.accountLoginViewModel.login()
-									coreContext.loggingInProgress = true
-								}, label: {
-									Text(coreContext.loggedIn ? "manage_account_delete" : "assistant_account_login")
-										.default_text_style_white_600(styleSize: 20)
-										.frame(height: 35)
-										.frame(maxWidth: .infinity)
-								})
-								.padding(.horizontal, 20)
-								.padding(.vertical, 10)
-								.background((accountLoginViewModel.username.isEmpty || accountLoginViewModel.passwd.isEmpty) ? Color.orangeMain100 : Color.orangeMain500)
-								.cornerRadius(60)
-								.disabled(accountLoginViewModel.username.isEmpty || accountLoginViewModel.passwd.isEmpty)
-								.padding(.bottom)
-								
-								HStack {
-									Text(.init(String(format: ("[%@](%@)"), String(localized: "assistant_forgotten_password"), "https://subscribe.linphone.org/")))
-										.underline()
-										.tint(Color.grayMain2c600)
-										.default_text_style_600(styleSize: 15)
-										.foregroundStyle(Color.grayMain2c500)
-								}
-								.frame(maxWidth: .infinity)
-								.padding(.bottom, 30)
-								
-								HStack {
-									VStack {
-										Divider()
-									}
-									Text("or")
-										.default_text_style(styleSize: 15)
-										.foregroundStyle(Color.grayMain2c500)
-									VStack {
-										Divider()
-									}
-								}
-								.padding(.bottom, 10)
-								
-								NavigationLink(destination: {
-									QrCodeScannerFragment()
-								}, label: {
-									HStack {
-										Image("qr-code")
-											.renderingMode(.template)
-											.resizable()
-											.foregroundStyle(Color.orangeMain500)
-											.frame(width: 20, height: 20)
-										
-										Text("assistant_scan_qr_code")
-											.default_text_style_orange_600(styleSize: 20)
-											.frame(height: 35)
-									}
-									.frame(maxWidth: .infinity)
-									
-								})
-								.padding(.horizontal, 20)
-								.padding(.vertical, 10)
-								.cornerRadius(60)
-								.overlay(
-									RoundedRectangle(cornerRadius: 60)
-										.inset(by: 0.5)
-										.stroke(Color.orangeMain500, lineWidth: 1)
-								)
-								.padding(.bottom)
-								
+
 								NavigationLink(isActive: $isLinkSIPActive, destination: {
-									ThirdPartySipAccountWarningFragment(accountLoginViewModel: accountLoginViewModel)
+                                    ThirdPartySipAccountLoginFragment(accountLoginViewModel: accountLoginViewModel)
 								}, label: {
 									Text("assistant_login_third_party_sip_account")
 										.default_text_style_orange_600(styleSize: 20)
@@ -250,40 +121,7 @@ struct LoginFragment: View {
 								
 								Spacer()
 								
-								HStack(alignment: .center) {
-									
-									Spacer()
-									
-									Text("assistant_no_account_yet")
-										.default_text_style(styleSize: 15)
-										.foregroundStyle(Color.grayMain2c700)
-										.padding(.horizontal, 10)
-									
-									NavigationLink(destination: RegisterFragment(registerViewModel: RegisterViewModel()), isActive: $isLinkREGActive, label: { Text("assistant_account_register")
-											.default_text_style_white_600(styleSize: 20)
-											.frame(height: 35)
-									})
-									.disabled(!sharedMainViewModel.generalTermsAccepted)
-									.padding(.horizontal, 20)
-									.padding(.vertical, 10)
-									.background(Color.orangeMain500)
-									.cornerRadius(60)
-									.padding(.horizontal, 10)
-									.simultaneousGesture(
-										TapGesture().onEnded {
-											self.linkActive = "REG"
-											if !sharedMainViewModel.generalTermsAccepted {
-												withAnimation {
-													self.isShowPopup.toggle()
-												}
-											} else {
-												self.isLinkREGActive = true
-											}
-										}
-									)
-									
-									Spacer()
-								}
+
 								.padding(.bottom)
 							}
 							.frame(maxWidth: sharedMainViewModel.maxWidth)
@@ -294,7 +132,7 @@ struct LoginFragment: View {
 					
 					if self.isShowPopup {
 						let generalTerms = String(format: "[%@](%@)", String(localized: "assistant_dialog_general_terms_label"), "https://www.linphone.org/en/terms-of-use/")
-						let privacyPolicy = String(format: "[%@](%@)", String(localized: "assistant_dialog_privacy_policy_label"), "https://linphone.org/en/privacy-policy")
+						let privacyPolicy = String(format: "[%@](%@)", String(localized: "assistant_dialog_privacy_policy_label"), "http://izzinakarte.pl/rozmowa_telegrosik_polityka_prywatnosci_v0.1.html")
 						let splitMsg = String(localized: "assistant_dialog_general_terms_and_privacy_policy_message").components(separatedBy: "%@")
 						if splitMsg.count == 3 { // We expect form of  STRING %A STRING %@ STRING
 							let contentPopup1 = Text(.init(splitMsg[0]))

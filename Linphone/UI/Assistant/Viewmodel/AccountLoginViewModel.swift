@@ -26,9 +26,9 @@ class AccountLoginViewModel: ObservableObject {
 	
 	@Published var username: String = ""
 	@Published var passwd: String = ""
-	@Published var domain: String = "sip.linphone.org"
+	@Published var domain: String = ""
 	@Published var displayName: String = ""
-	@Published var transportType: String = "TLS"
+	@Published var transportType: String = "UDP"
 	
 	init() {}
 	

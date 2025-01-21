@@ -36,9 +36,9 @@ class RegisterViewModel: ObservableObject {
 	@Published var phoneNumberError: String = ""
 	@Published var passwd: String = ""
 	@Published var passwordError: String = ""
-	@Published var domain: String = "sip.linphone.org"
+	@Published var domain: String = ""
 	@Published var displayName: String = ""
-	@Published var transportType: String = "TLS"
+	@Published var transportType: String = "UDP"
 	
 	@Published var dialPlanValueSelected: String = "🇫🇷 +33"
 	@Published var dialPlansList: [DialPlan] = []
