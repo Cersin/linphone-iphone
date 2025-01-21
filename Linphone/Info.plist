@@ -131,7 +131,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
-		<string>linphone</string>
+		<string></string>
 	</dict>
 </dict>
 </plist>
