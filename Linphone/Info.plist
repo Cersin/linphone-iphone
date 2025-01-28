@@ -128,6 +128,8 @@
 		<string>voip</string>
 		<string>audio</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Telegrosik</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>

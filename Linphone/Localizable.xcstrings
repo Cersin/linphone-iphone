@@ -795,6 +795,7 @@
       }
     },
     "assistant_forgotten_password" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -843,6 +844,7 @@
       }
     },
     "assistant_no_account_yet" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1003,6 +1005,7 @@
       }
     },
     "assistant_scan_qr_code" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6060,6 +6063,7 @@
       }
     },
     "or" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -7373,9 +7377,6 @@
           }
         }
       }
-    },
-    "sip.linphone.org" : {
-      "shouldTranslate" : false
     },
     "SRTP" : {
 
