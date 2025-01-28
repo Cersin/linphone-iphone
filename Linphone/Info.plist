@@ -130,6 +130,11 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Telegrosik</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>fr</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
