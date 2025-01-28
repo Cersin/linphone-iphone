@@ -818,31 +818,7 @@ struct ContentView: View {
 									}
 									
 									Spacer()
-									Button(action: {
-										self.index = 3
-										contactViewModel.indexDisplayedFriend = nil
-										historyViewModel.displayedCall = nil
-										conversationViewModel.displayedConversation = nil
-									}, label: {
-										VStack {
-											Image("video-conference")
-												.renderingMode(.template)
-												.resizable()
-												.foregroundStyle(self.index == 3 ? Color.orangeMain500 : Color.grayMain2c600)
-												.frame(width: 25, height: 25)
-											if self.index == 3 {
-												Text("bottom_navigation_meetings_label")
-													.default_text_style_700(styleSize: 9)
-											} else {
-												Text("bottom_navigation_meetings_label")
-													.default_text_style(styleSize: 9)
-											}
-										}
-									})
-									.padding(.top)
-									.frame(width: 66)
-									
-									Spacer()
+
 								}
 							}
 							.padding(.bottom, geometry.safeAreaInsets.bottom > 0 ? 0 : 15)
