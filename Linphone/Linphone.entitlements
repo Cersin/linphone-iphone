@@ -10,9 +10,9 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.belledonne-communications.linphone</string>
-		<string>group.org.linphone.phone.linphoneExtension</string>
-		<string>group.org.linphone.phone.msgNotification</string>
+		<string>group.belledonne-communications.telegrosik</string>
+		<string>group.org.telegrosik.phone.linphoneExtension</string>
+		<string>group.org.telegrosik.phone.msgNotification</string>
 	</array>
 	<key>com.apple.security.files.user-selected.read-only</key>
 	<true/>
